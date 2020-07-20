@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点击赞同</title>
+    <style>
+        .wrap{
+            position: relative;
+            border: 1px solid #f2f2f2;
+            width: 500px;
+            height: 500px;
+        }
+        .agree{
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: aquamarine;
+            border: 1px solid aquamarine;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 20px;
+        }
+        .agree:hover{
+            cursor: pointer;
+        }
+        .like{
+            position: absolute;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            animation: animation-x 3s 0s linear infinite,animation-y 4s 0s linear infinite
+        }
+        .first-like{
+            position: absolute;
+            background-image: url("./first-agree.png");
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+        @keyframes animation-y {
+            0%{
+                opacity: 0;
+                transform: translateY(0) scale(0);
+            }
+            50%{
+                opacity: 1;
+                transform: translateY(-50px) scale(1);
+            }
+            75%{
+                opacity: 0.8;
+                transform: translateY(-100px) scale(1.5);
+            }
+            100%{
+                opacity: 0;
+                transform: translateY(-150px) scale(2);
+            }
+        }
+        @keyframes animation-x {
+            0%{
+                margin-left: 0;
+            }
+            50%{
+                margin-left: -10px;
+            }
+            75%{
+                margin-left: 10px;
+            }
+            100%{
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id='app'>
+        <div class="wrap">
+            <div class="agree" @click="agree">点赞</div>
+            <div class="like first-like" v-for='(item,index) in list' :key="index"></div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        let app=new Vue({
+            el:"#app",
+            data:{
+                list:[]
+            },
+            methods: {
+                agree(){
+                    this.list.push(1)
+                }
+            },
+        })
+    </script>
+</body>
+</html>
